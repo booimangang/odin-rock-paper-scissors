@@ -1,53 +1,68 @@
-// get computer Choice 
-// get player choice 
-// compare the choices 
-// if CC == rock && PC == scissor 
-//     - CC wins 
-// if CC == paper && P == rock 
-//     - CC wins 
-// if CC == scissors && PC == paper 
-//     - CC wins 
-// else, P wins.
-
-// const playerSelection = "rock";
-// const computerSelection = getComputerChoice();
+let playerScore = 0;
+let compuerScore = 0;
 
 function getComputerChoice() {
-    let choice = ["rock", "paper", "scissors"]
+    let computerChoice = ["rock", "paper", "scissors"]
     let randomNumber = Math.floor(Math.random() * 3);
-    console.log(choice[randomNumber]);
-    return choice[randomNumber];
+    // console.log(`CC:- ${choice[randomNumber]}`);
+    return computerChoice[randomNumber];
+    // return choice[1];
 }
 
+function getPlayerChoice(i) {
+    let playerChoice = prompt(`[GAME ${i}] Choose:- ROCK, PAPER, SCISSORS`, ' ').toLowerCase();
+    // if (playerChoice == ("rock" || "paper" || 'scissors')) {
+    return playerChoice;
+
+    // } else return console.log("Invalid choice")
+}
+
+
 function playRound(playerSelection, computerSelection) {
-    if (playerSelection == "rock" && computerSelection == "scissors") {
-        console.log("Result: you win")
-    } else if (playerSelection == "paper" && computerSelection == "rock") {
-        console.log("Result: you win")
-    } else if (playerSelection == "scissors" && computerSelection == "paper") {
-        console.log("Result: you win")
+    if (
+        (playerSelection == "rock" && computerSelection == "scissors") ||
+        (playerSelection == "paper" && computerSelection == "rock") ||
+        (playerSelection == "scissors" && computerSelection == "paper")
+    ) {
+        return "win";
     } else if (playerSelection == computerSelection) {
-        console.log("Result: it's a draw")
+        return "draw";
     }
-
     else {
-
-        console.log(`Result: YOU LOSE`)
+        return "lose";
     }
 }
 
 function game() {
-    let playerScore;
-    let compuerScore;
 
     for (let i = 1; i <= 5; i++) {
-        let playerSelection = prompt(`What's your ${i} choice?`, ' ')
+        console.log(`%c[ GAME:- ${i} ]`, "color:yellow")
+        let playerSelection = getPlayerChoice(i);
         const computerSelection = getComputerChoice();
-        console.log(`Player's Choice - ${playerSelection}`)
-        console.log(`Computer's C - ${computerSelection}`)
-        playRound(playerSelection, computerSelection)
-    }
+        console.log(`Player's Choice:- ${playerSelection}`)
+        console.log(`Computer's Choice:- ${computerSelection}`)
+        let result = playRound(playerSelection, computerSelection)
 
+        if (result == "win") {
+            console.log("%c-- YOU WIN THIS ROUND --", "color:limegreen")
+            playerScore++
+        } else if (result == "lose") {
+            console.log(`%c-- YOU LOSE THIS ROUND --`, "color:red")
+            compuerScore++
+        } else if (result == "draw") {
+            console.log("%c-- It's a DRAW THIS ROUND --", "color:pink")
+        }
+
+        console.log(`SCORE:: Player:- ${playerScore}:${compuerScore} -:Computer:`)
+    }
 }
 
 game()
+
+if (playerScore > compuerScore) {
+    console.log(`%cYOU WIN THE GAME`, "color:orange; font-size: 24px")
+} else if (playerScore < compuerScore) {
+    console.log(`%cYOU LOSE THE GAME`, "color: orange; font-size: 24px")
+} else if (playerScore == compuerScore) {
+    console.log(`%cIT'S A TIE GAME`, "color:orange; font-size: 24px")
+}
