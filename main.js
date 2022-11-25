@@ -9,8 +9,8 @@
 //     - CC wins 
 // else, P wins.
 
-const playerSelection = "rock";
-const computerSelection = getComputerChoice();
+// const playerSelection = "rock";
+// const computerSelection = getComputerChoice();
 
 function getComputerChoice() {
     let choice = ["rock", "paper", "scissors"]
@@ -21,19 +21,33 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
     if (playerSelection == "rock" && computerSelection == "scissors") {
-        console.log("you win")
+        console.log("Result: you win")
     } else if (playerSelection == "paper" && computerSelection == "rock") {
-        console.log("you win")
+        console.log("Result: you win")
     } else if (playerSelection == "scissors" && computerSelection == "paper") {
-        console.log("you win")
+        console.log("Result: you win")
     } else if (playerSelection == computerSelection) {
-        console.log("it's a draw")
+        console.log("Result: it's a draw")
     }
 
     else {
 
-        console.log(`PC - ${playerSelection} CC - ${computerSelection}: Result - YOU LOSE`)
+        console.log(`Result: YOU LOSE`)
     }
 }
 
+function game() {
+    let playerScore;
+    let compuerScore;
 
+    for (let i = 1; i <= 5; i++) {
+        let playerSelection = prompt(`What's your ${i} choice?`, ' ')
+        const computerSelection = getComputerChoice();
+        console.log(`Player's Choice - ${playerSelection}`)
+        console.log(`Computer's C - ${computerSelection}`)
+        playRound(playerSelection, computerSelection)
+    }
+
+}
+
+game()
