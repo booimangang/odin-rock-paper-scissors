@@ -4,19 +4,13 @@ let compuerScore = 0;
 function getComputerChoice() {
     let computerChoice = ["rock", "paper", "scissors"]
     let randomNumber = Math.floor(Math.random() * 3);
-    // console.log(`CC:- ${choice[randomNumber]}`);
     return computerChoice[randomNumber];
-    // return choice[1];
 }
 
 function getPlayerChoice(i) {
-    let playerChoice = prompt(`[GAME ${i}] Choose:- ROCK, PAPER, SCISSORS`, ' ').toLowerCase();
-    // if (playerChoice == ("rock" || "paper" || 'scissors')) {
+    let playerChoice = prompt(`[GAME ${i}] Choose:- ROCK, PAPER, SCISSORS`, '').toLowerCase();
     return playerChoice;
-
-    // } else return console.log("Invalid choice")
 }
-
 
 function playRound(playerSelection, computerSelection) {
     if (
@@ -38,7 +32,7 @@ function game() {
     for (let i = 1; i <= 5; i++) {
         console.log(`%c[ GAME:- ${i} ]`, "color:yellow")
         let playerSelection = getPlayerChoice(i);
-        const computerSelection = getComputerChoice();
+        let computerSelection = getComputerChoice();
         console.log(`Player's Choice:- ${playerSelection}`)
         console.log(`Computer's Choice:- ${computerSelection}`)
         let result = playRound(playerSelection, computerSelection)
@@ -66,3 +60,5 @@ if (playerScore > compuerScore) {
 } else if (playerScore == compuerScore) {
     console.log(`%cIT'S A TIE GAME`, "color:orange; font-size: 24px")
 }
+
+
