@@ -1,3 +1,11 @@
+const playerChoice = document.querySelector(".key")
+playerChoice.addEventListener("click", (e) => {
+    console.log(e)
+})
+
+
+
+
 let playerScore = 0;
 let compuerScore = 0;
 
@@ -51,7 +59,7 @@ function game() {
     }
 }
 
-game()
+// game()
 
 if (playerScore > compuerScore) {
     console.log(`%cYOU WIN THE GAME`, "color:orange; font-size: 24px")
@@ -60,5 +68,7 @@ if (playerScore > compuerScore) {
 } else if (playerScore == compuerScore) {
     console.log(`%cIT'S A TIE GAME`, "color:orange; font-size: 24px")
 }
+
+
 
 
