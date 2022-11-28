@@ -136,3 +136,18 @@ header {
     width: 4.5rem;
   }
 }
+
+.signature {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px 0;
+  padding: 8px 0;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.signature img {
+  width: 20px;
+  margin-left: 10px;
+}
