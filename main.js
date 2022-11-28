@@ -1,9 +1,3 @@
-const playerChoice = document.querySelector(".player-choice");
-const computerChoice = document.querySelector(".computer-choice");
-const resultDiv = document.querySelector(".result");
-
-const computerScore = document.querySelector(".computer-score");
-const playerScore = document.querySelector(".player-score");
 
 let initialComputerScore = 0;
 let initialPlayerScore = 0;
@@ -11,14 +5,6 @@ let initialPlayerScore = 0;
 
 const comment = document.querySelector(".comment")
 const resetBtn = document.querySelector(".reset-btn");
-
-resetBtn.addEventListener("click", resetScore)
-
-function getComputerChoice() {
-    let computerChoice = ["rock", "paper", "scissors"]
-    let randomNumber = Math.floor(Math.random() * 3);
-    return computerChoice[randomNumber];
-}
 
 function playRound(playerSelection, computerSelection) {
     if (
@@ -35,28 +21,34 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+const resultDiv = document.querySelector(".result");
+
+function updateResult(result) {
+    resultDiv.innerText = result
+    resultDiv.classList.add("zoom")
+}
+
 function game(playerSelection) {
 
     let computerSelection = getComputerChoice();
-    playerChoice.innerText = playerSelection;
-    computerChoice.innerText = computerSelection;
-
     let result = playRound(playerSelection, computerSelection)
 
     if (result == "win") {
-        resultDiv.innerText = "YOU WIN"
+        updateResult("YOU WIN")
         initialPlayerScore++
     } else if (result == "lose") {
-        resultDiv.innerText = "YOU LOSE"
+        updateResult("YOU LOSE")
         initialComputerScore++
     } else if (result == "draw") {
-        resultDiv.innerText = "DRAW"
+        updateResult("DRAW")
     }
-
     setScore(initialComputerScore, initialPlayerScore)
     commentGenerate(initialComputerScore, initialPlayerScore)
-
 }
+
+
+const computerScore = document.querySelector(".computer-score");
+const playerScore = document.querySelector(".player-score");
 
 function setScore(CS, PS) {
     computerScore.innerText = CS;
@@ -68,27 +60,73 @@ function resetScore() {
     initialPlayerScore = 0;
     computerScore.innerText = 0;
     playerScore.innerText = 0;
+    activeChoice("remove")
+    computerActiveChoice("remove")
+    commentGenerate(0, 0)
+
 }
 
-document.addEventListener("click", (e) => {
-    let playerSelection = e.target.dataset.key;
-    if (e.target.getAttribute("class") != "choice") return;
-    game(playerSelection)
-})
+function activeChoice(e) {
+    const choices = document.querySelectorAll(`img[choice="true"]`);
+    choices.forEach(key => {
+        if (key.getAttribute("data-key") === e) {
+            key.classList.add("clicked")
+        } else if (e === "remove") {
+            key.classList.remove("clicked")
+        } else {
+            key.classList.remove("clicked")
 
+        }
+    })
+}
+
+function computerActiveChoice(e) {
+    const computerChoices = document.querySelectorAll(`img[computer-choice="true"]`);
+    computerChoices.forEach(key => {
+        if (key.getAttribute("data-key") === e) {
+            key.classList.add("choosen")
+        } else if (e === "remove") {
+            key.classList.remove("choosen")
+        } else {
+            key.classList.remove("choosen")
+        }
+    })
+}
 
 // Comment generator
 
 function commentGenerate(CS, PS) {
-    if (CS > PS) {
-        if (CS - PS > 2) comment.innerText = "Boy! You suck."
-        else if (CS - PS > 3) comment.innerText = "You suck big time!"
-        else if (CS - PS > 5) comment.innerText = "You are terrible at this game!"
-
+    if (CS == PS) {
+        comment.innerText = `"Good Luck"`
+    } else if (CS > PS) {
+        let diff = CS - PS;
+        if (diff >= 2 && diff < 3) comment.innerText = `"Boy! You suck."`
+        else if (diff >= 3 && diff < 5) comment.innerText = `"You suck big time!"`
+        else if (diff > 5) comment.innerText = `"You are terrible at this game!"`
 
     } else if (PS > CS) {
-        if (PS - CS > 2) comment.innerText = "You are good"
-        else if (PS - CS > 3) comment.innerText = "You are doing great"
-        else if (PS - CS > 5) comment.innerText = "You are awesome"
+        let diff = PS - CS;
+        if (diff >= 2 && diff < 3) comment.innerText = `"You are good!"`
+        else if (diff >= 3 && diff < 5) comment.innerText = `"You are doing great!"`
+        else if (diff > 5) comment.innerText = `"You are awesome"`
     }
 }
+
+
+function getComputerChoice() {
+    let computerChoice = ["rock", "paper", "scissors"]
+    let randomNumber = Math.floor(Math.random() * 3);
+    computerActiveChoice(computerChoice[randomNumber]);
+    return computerChoice[randomNumber];
+}
+
+function getClayerChoice(e) {
+    let playerSelection = e.target.dataset.key;
+    if (e.target.getAttribute("choice") != "true") return;
+    activeChoice(e.target.dataset.key)
+    game(playerSelection)
+}
+
+resetBtn.addEventListener("click", resetScore)
+
+document.addEventListener("click", getClayerChoice)

@@ -1,0 +1,138 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Jost", sans-serif;
+  /* background-color: teal; */
+}
+
+body {
+  background: linear-gradient(teal, yellow);
+  /* padding-block: 2rem; */
+  height: 100vh;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+header {
+  text-align: center;
+  padding-block: 1.5rem;
+}
+
+.game-name {
+  font-size: 2.6rem;
+  text-transform: uppercase;
+}
+
+.annouce-card {
+  text-align: center;
+  /* height: 2rem; */
+}
+
+.annouce-card .score {
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  max-width: 50%;
+  margin: auto;
+}
+
+.annouce-card .player-label {
+  font-size: 1rem;
+}
+
+.annouce-card .computer-score,
+.player-score {
+  padding: 0.1em;
+  margin: 0.5rem;
+  width: 5rem;
+  background-color: hsl(0, 0%, 1%);
+  border-radius: 5px;
+  font-size: 3rem;
+  color: white;
+}
+
+.game {
+  padding: 3rem 2rem;
+}
+
+.computer-choice {
+  display: flex;
+  justify-content: space-between;
+}
+
+.computer-choice .cchoice {
+  width: 6rem;
+  border-radius: 50%;
+  transition: all 0.07s ease;
+}
+
+.computer-choice img {
+  filter: sepia(80%);
+  -webkit-filter: sepia(95%);
+}
+
+.choosen {
+  transform: scale(1.2);
+  box-shadow: 0 0 0px 1rem hsl(0, 0%, 0%);
+}
+
+.info-card {
+  text-align: center;
+  margin: auto;
+  padding: 2.5rem;
+}
+
+.info-card .result {
+  font-size: 2.2rem;
+  transition: all 0.07s ease;
+}
+
+/* .zoom {
+  transform: scale(1.5);
+} */
+
+.info-card .comment {
+  font-size: 1rem;
+}
+
+.btn-choices {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-choices .choice {
+  width: 6rem;
+  border-radius: 50%;
+  transition: all 0.07s ease;
+}
+
+.clicked {
+  transform: scale(1.2);
+  box-shadow: 0 0 0px 0.8rem #f81a0a;
+}
+
+.reset-btn {
+  text-align: center;
+}
+
+.reset-btn .btnReset {
+  font-size: 2rem;
+}
+
+.reset-btn .textReset {
+  font-size: 0.6rem;
+}
+
+@media (max-width: 460px) {
+  .computer-choice .cchoice {
+    width: 4.5rem;
+  }
+  .btn-choices .choice {
+    width: 4.5rem;
+  }
+}

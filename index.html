@@ -4,41 +4,86 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./style.css" rel="stylesheet" />
     <script src="./main.js" defer></script>
     <title>RPS</title>
   </head>
   <body>
     <div class="main container">
       <header>
-        <h1 id="game-name" title="hoopla">Rock Paper Scissors</h1>
+        <h1 class="game-name" title="hoopla">Rock Paper Scissors</h1>
       </header>
 
-      <div class="comment-card">
+      <div class="annouce-card container">
         <div class="score">
-          Computer -
-          <span class="computer-score"> 0 </span>
-          :
-          <span class="player-score"> 0 </span>
-          - Player
+          <div>
+            <div class="player-label">COMPUTER</div>
+            <div class="computer-score">0</div>
+          </div>
+          <div>
+            <div class="player-label">PLAYER</div>
+            <div class="player-score">0</div>
+          </div>
         </div>
-        <div class="comment-card">
-          <h3 class="comment">Good Luck</h3>
+      </div>
+
+      <div class="game">
+        <div class="computer-choice container">
+          <img
+            src="./img/scissors-invert.png"
+            data-key="scissors"
+            class="cchoice"
+            computer-choice="true"
+          />
+
+          <img
+            src="./img/paper-invert.png"
+            data-key="paper"
+            class="cchoice"
+            computer-choice="true"
+          />
+
+          <img
+            src="./img/rock-invert.png"
+            data-key="rock"
+            class="cchoice"
+            computer-choice="true"
+          />
+        </div>
+
+        <div class="info-card container">
+          <h1 class="result">RESULT</h1>
+          <h3 class="comment">"Good Luck"</h3>
+        </div>
+
+        <div class="btn-choices container">
+          <img
+            src="./img/rock.png"
+            data-key="rock"
+            class="choice"
+            choice="true"
+          />
+
+          <img
+            src="./img/paper.png"
+            data-key="paper"
+            class="choice"
+            choice="true"
+          />
+
+          <img
+            src="./img/scissors.png"
+            data-key="scissors"
+            class="choice"
+            choice="true"
+          />
         </div>
       </div>
 
-      <div class="info-card">
-        <h2 class="computer-choice">it's choice</h2>
-        <h1 class="result">RESULT</h1>
-        <h2 class="player-choice">you choice</h2>
+      <div class="reset-btn container">
+        <span class="btnReset">&#8634;</span>
+        <div class="textReset">RESET</div>
       </div>
-
-      <div class="btn-choices">
-        <button data-key="rock" class="choice">rock</button>
-        <button data-key="paper" class="choice">paper</button>
-        <button data-key="scissors" class="choice">Scissors</button>
-      </div>
-
-      <button class="reset-btn">RESET SCORE</button>
     </div>
   </body>
 </html>
