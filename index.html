@@ -5,31 +5,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="./main.js" defer></script>
-    <title>Document</title>
+    <title>RPS</title>
   </head>
   <body>
-    <h1 id="game-name" title="hoopla">Rock, Paper, Scissors</h1>
+    <div class="main container">
+      <header>
+        <h1 id="game-name" title="hoopla">Rock Paper Scissors</h1>
+      </header>
 
-    <div class="score">
-      Computer -
-      <span class="computer-score"> 0 </span>
-      :
-      <span class="player-score"> 0 </span>
-      - Player
+      <div class="comment-card">
+        <div class="score">
+          Computer -
+          <span class="computer-score"> 0 </span>
+          :
+          <span class="player-score"> 0 </span>
+          - Player
+        </div>
+        <div class="comment-card">
+          <h3 class="comment">Good Luck</h3>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h2 class="computer-choice">it's choice</h2>
+        <h1 class="result">RESULT</h1>
+        <h2 class="player-choice">you choice</h2>
+      </div>
+
+      <div class="btn-choices">
+        <button data-key="rock" class="choice">rock</button>
+        <button data-key="paper" class="choice">paper</button>
+        <button data-key="scissors" class="choice">Scissors</button>
+      </div>
+
+      <button class="reset-btn">RESET SCORE</button>
     </div>
-
-    <h2 class="computer-choice">it's choice</h2>
-
-    <h1 class="result">RESULT</h1>
-
-    <h2 class="player-choice">you choice</h2>
-
-    <div>
-      <button data-key="rock" class="choice">rock</button>
-      <button data-key="paper" class="choice">paper</button>
-      <button data-key="scissors" class="choice">Scissors</button>
-    </div>
-
-    <button class="reset-btn">RESET SCORE</button>
   </body>
 </html>

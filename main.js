@@ -8,6 +8,8 @@ const playerScore = document.querySelector(".player-score");
 let initialComputerScore = 0;
 let initialPlayerScore = 0;
 
+
+const comment = document.querySelector(".comment")
 const resetBtn = document.querySelector(".reset-btn");
 
 resetBtn.addEventListener("click", resetScore)
@@ -52,6 +54,7 @@ function game(playerSelection) {
     }
 
     setScore(initialComputerScore, initialPlayerScore)
+    commentGenerate(initialComputerScore, initialPlayerScore)
 
 }
 
@@ -60,8 +63,9 @@ function setScore(CS, PS) {
     playerScore.innerText = PS;
 }
 
-
 function resetScore() {
+    initialComputerScore = 0;
+    initialPlayerScore = 0;
     computerScore.innerText = 0;
     playerScore.innerText = 0;
 }
@@ -73,4 +77,18 @@ document.addEventListener("click", (e) => {
 })
 
 
+// Comment generator
 
+function commentGenerate(CS, PS) {
+    if (CS > PS) {
+        if (CS - PS > 2) comment.innerText = "Boy! You suck."
+        else if (CS - PS > 3) comment.innerText = "You suck big time!"
+        else if (CS - PS > 5) comment.innerText = "You are terrible at this game!"
+
+
+    } else if (PS > CS) {
+        if (PS - CS > 2) comment.innerText = "You are good"
+        else if (PS - CS > 3) comment.innerText = "You are doing great"
+        else if (PS - CS > 5) comment.innerText = "You are awesome"
+    }
+}
