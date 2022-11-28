@@ -1,23 +1,21 @@
-const playerChoice = document.querySelector(".key")
-playerChoice.addEventListener("click", (e) => {
-    console.log(e)
-})
+const playerChoice = document.querySelector(".player-choice");
+const computerChoice = document.querySelector(".computer-choice");
+const resultDiv = document.querySelector(".result");
 
+const computerScore = document.querySelector(".computer-score");
+const playerScore = document.querySelector(".player-score");
 
+let initialComputerScore = 0;
+let initialPlayerScore = 0;
 
+const resetBtn = document.querySelector(".reset-btn");
 
-let playerScore = 0;
-let compuerScore = 0;
+resetBtn.addEventListener("click", resetScore)
 
 function getComputerChoice() {
     let computerChoice = ["rock", "paper", "scissors"]
     let randomNumber = Math.floor(Math.random() * 3);
     return computerChoice[randomNumber];
-}
-
-function getPlayerChoice(i) {
-    let playerChoice = prompt(`[GAME ${i}] Choose:- ROCK, PAPER, SCISSORS`, '').toLowerCase();
-    return playerChoice;
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -35,40 +33,44 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game() {
+function game(playerSelection) {
 
-    for (let i = 1; i <= 5; i++) {
-        console.log(`%c[ GAME:- ${i} ]`, "color:yellow")
-        let playerSelection = getPlayerChoice(i);
-        let computerSelection = getComputerChoice();
-        console.log(`Player's Choice:- ${playerSelection}`)
-        console.log(`Computer's Choice:- ${computerSelection}`)
-        let result = playRound(playerSelection, computerSelection)
+    let computerSelection = getComputerChoice();
+    playerChoice.innerText = playerSelection;
+    computerChoice.innerText = computerSelection;
 
-        if (result == "win") {
-            console.log("%c-- YOU WIN THIS ROUND --", "color:limegreen")
-            playerScore++
-        } else if (result == "lose") {
-            console.log(`%c-- YOU LOSE THIS ROUND --`, "color:red")
-            compuerScore++
-        } else if (result == "draw") {
-            console.log("%c-- It's a DRAW THIS ROUND --", "color:pink")
-        }
+    let result = playRound(playerSelection, computerSelection)
 
-        console.log(`SCORE:: Player:- ${playerScore}:${compuerScore} -:Computer:`)
+    if (result == "win") {
+        resultDiv.innerText = "YOU WIN"
+        initialPlayerScore++
+    } else if (result == "lose") {
+        resultDiv.innerText = "YOU LOSE"
+        initialComputerScore++
+    } else if (result == "draw") {
+        resultDiv.innerText = "DRAW"
     }
+
+    setScore(initialComputerScore, initialPlayerScore)
+
 }
 
-// game()
-
-if (playerScore > compuerScore) {
-    console.log(`%cYOU WIN THE GAME`, "color:orange; font-size: 24px")
-} else if (playerScore < compuerScore) {
-    console.log(`%cYOU LOSE THE GAME`, "color: orange; font-size: 24px")
-} else if (playerScore == compuerScore) {
-    console.log(`%cIT'S A TIE GAME`, "color:orange; font-size: 24px")
+function setScore(CS, PS) {
+    computerScore.innerText = CS;
+    playerScore.innerText = PS;
 }
 
+
+function resetScore() {
+    computerScore.innerText = 0;
+    playerScore.innerText = 0;
+}
+
+document.addEventListener("click", (e) => {
+    let playerSelection = e.target.dataset.key;
+    if (e.target.getAttribute("class") != "choice") return;
+    game(playerSelection)
+})
 
 
 
